@@ -10,7 +10,36 @@ namespace AdventOfCode2020
     {
         static void Main(string[] args)
         {
+            DataReader dataReader = new DataReader();
 
+            for (int i = 1; i <= 25; i++)
+            {
+                Day day = null;
+                string[] loadedData = dataReader.ReadData(i);
+
+                if (loadedData is null) break;
+
+                try
+                {
+                    day = Activator.CreateInstance(Type.GetType(String.Format("AdventOfCode2020.Days.Day{0}", i))) as Day;
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Day{0}.cs file does not exist", i);
+                    break;
+                }
+
+                day.PrepareData(loadedData);
+                Console.WriteLine("Running Day {0}", i);
+
+                day.StartTimer();
+                string answer = day.Run();
+                day.StopTimer();
+
+                Console.WriteLine("Day {0} answer is: {1}. The total time the code took to execute was {2}", i, answer, day.GetTotalElapsed());
+            }
+
+            Console.ReadLine();
         }
     }
 }
