@@ -9,11 +9,17 @@ namespace AdventOfCode2020
 {
     abstract class Day
     {
-        private Stopwatch stopwatch;
+        protected Stopwatch stopwatch;
+        protected StringBuilder stringBuilder;
+
+        public Day()
+        {
+            stringBuilder = new StringBuilder();
+            stopwatch = new Stopwatch();
+        }
 
         public void StartTimer()
         {
-            stopwatch = new Stopwatch();
             stopwatch.Start();
         }
 

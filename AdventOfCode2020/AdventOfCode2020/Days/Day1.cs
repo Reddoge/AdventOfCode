@@ -10,7 +10,7 @@ namespace AdventOfCode2020.Days
     class Day1 : Day
     {
         private int[] expenseReport;
-        private int desiredNumber = 2020;
+        private readonly int desiredNumber = 2020;
 
         public override void PrepareData(string[] data)
         {
@@ -18,6 +18,22 @@ namespace AdventOfCode2020.Days
         }
 
         public override string Run()
+        {
+            //Part 1 Code Execution
+            stringBuilder.Append("Part 1 Answer: ").Append(RunPart1()).Append(' ', 5);
+
+            TimeSpan part1Elapsed = stopwatch.Elapsed;
+            stringBuilder.Append("Execution time:").AppendLine(part1Elapsed.ToString());
+
+
+            //Part 2 Code Execution
+            stringBuilder.Append("Part 2 Answer: ").Append(RunPart2()).Append(' ', 5);
+            stringBuilder.Append("Execution time:").Append((stopwatch.Elapsed - part1Elapsed).ToString());
+
+            return stringBuilder.ToString();
+        }
+
+        private string RunPart1()
         {
             Array.Sort(expenseReport);
 
@@ -36,13 +52,18 @@ namespace AdventOfCode2020.Days
                 {
                     rightIndex--;
                 }
-                else //(sumResult > desiredNumber)
+                else //(sumResult < desiredNumber)
                 {
                     leftIndex++;
                 }
             }
 
             return "UNKNOWN";
+        }
+
+        private string RunPart2()
+        {
+            return "";
         }
     }
 }

@@ -30,13 +30,15 @@ namespace AdventOfCode2020
                 }
 
                 day.PrepareData(loadedData);
-                Console.WriteLine("Running Day {0}", i);
+                //Console.WriteLine("Running Day {0}", i);
 
                 day.StartTimer();
                 string answer = day.Run();
                 day.StopTimer();
 
-                Console.WriteLine("Day {0} answer is: {1}. The total time the code took to execute was {2}", i, answer, day.GetTotalElapsed());
+                Console.WriteLine("Day {0} output:" + Environment.NewLine + "{1}", i, answer);
+                Console.WriteLine("The total execution: {0} \r\n", day.GetTotalElapsed());
+
             }
 
             Console.ReadLine();
